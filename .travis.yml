@@ -1,0 +1,5 @@
+script:
+  git clone https://github.com/alexdobin/STAR
+  ls
+  cd source
+  make
