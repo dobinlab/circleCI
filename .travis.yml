@@ -1,5 +1,5 @@
 script:
-  - git clone https://github.com/alexdobin/STAR
+  - git clone --depth 1 https://github.com/alexdobin/STAR
   - ls
-  - cd source
+  - cd STAR/source
   - make
