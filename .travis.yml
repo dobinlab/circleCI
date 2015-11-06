@@ -6,13 +6,13 @@ git:
 before_script:
    - chmod +x .travis.install
    #- ./.travis.install
-   - git clone --depth 1 https://github.com/alexdobin/STAR
+   - git clone --depth 1 https://github.com/alexdobin/STAR STAR-compile
    - ls
    #- cd STAR/source
 
 script:
    #-  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
-   - cp STAR/bin/Linux_x86_64/STAR ./
+   - cp STAR-compile/bin/Linux_x86_64/STAR ./
 
 after_success:
   - #cd ../..
