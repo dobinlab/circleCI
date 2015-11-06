@@ -8,14 +8,14 @@ before_script:
    #- ./.travis.install
    - git clone --depth 1 https://github.com/alexdobin/STAR
    - ls
-   - cd STAR/source
+   #- cd STAR/source
 
 script:
    #-  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
-   - cp STAR ../..
+   - cp STAR/bin/Linux_x86_64/STAR ./
 
 after_success:
-  - cd ../..
+  - #cd ../..
   - git add STAR
   - git commit -m "STAR"
   - git push origin master
