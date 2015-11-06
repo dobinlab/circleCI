@@ -1,5 +1,11 @@
-script:
-  - git clone --depth 1 https://github.com/alexdobin/STAR
-  - ls
-  - cd STAR/source
-  - make
+os: osx
+git:
+  submodules: false
+before_script:
+   - chmod +x .travis.install
+   - ./.travis.install
+   - git clone --depth 1 https://github.com/alexdobin/STAR
+   - ls
+   - cd STAR/sourcescript:
+   -  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+
