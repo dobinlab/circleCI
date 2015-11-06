@@ -5,17 +5,22 @@ git:
 
 before_script:
    - chmod +x .travis.install
-   - ./.travis.install
+   #- ./.travis.install
    - git clone --depth 1 https://github.com/alexdobin/STAR
    - ls
    - cd STAR/source
 
 script:
-   -  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   #-  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - cp STAR ../..
 
 after_success:
-  - eval "$(ssh-agent -s)" #start the ssh agent
-  - chmod 600 .travis/deploy_key.pem # this key should have push access
-  - ssh-add .travis/deploy_key.pem
-  - git remote add deploy DEPLOY_REPO_URI_GOES_HERE
-  - git push deploy
+  - cd ../..
+  - git add STAR
+  - git commit -m "STAR"
+  - git push origin master
+  - #eval "$(ssh-agent -s)" #start the ssh agent
+  - #chmod 600 .travis/deploy_key.pem # this key should have push access
+  - #ssh-add .travis/deploy_key.pem
+  - #git remote add deploy DEPLOY_REPO_URI_GOES_HERE
+  - #git push deploy
