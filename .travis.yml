@@ -14,10 +14,11 @@ script:
    -  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
 
 after_success:
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  #- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - eval "$(ssh-agent -s)" #start the ssh agent
   - chmod 600 .travis/deploy_key.pem # this key should have push access
   - ssh-add .travis/deploy_key.pem
+  
   - git clone git@github.com:alexdobin/travis-tests1
   - cd travis-tests1
   - git config user.name alexdobin
