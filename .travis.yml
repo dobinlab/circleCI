@@ -27,6 +27,8 @@ after_success:
   - cd travis-tests1
   - git config user.name alexdobin
   - git config user.email dobin@cshl.edu
+  - cp ../STAR ../STARlong ./
+  - ls -l
   - ./STAR --version
   - ./STARlong --version
   - git add STAR STARlong
