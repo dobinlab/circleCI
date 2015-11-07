@@ -12,7 +12,7 @@ script:
    - cd STAR/source 
    - make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
    - make clean
-   - make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - make STARlongForMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
 
 after_success:
   - cd ../..
@@ -30,5 +30,5 @@ after_success:
   - ./STAR --version
   - ./STARlong --version
   - git add STAR STARlong
-  - git commit -m "Added STAR STARlong"
+  - git commit -a -m "Added STAR STARlong"
   - git push origin master
