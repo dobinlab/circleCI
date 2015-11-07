@@ -23,7 +23,8 @@ after_success:
   - #git push deploy
   - git clone git@github.com:alexdobin/travis-tests1
   - cd travis-tests1
-  #- git config user.name alexdobin
+  - git config user.name alexdobin
+  - git config user.email dobin@cshl.edu
   - cp ../STAR ./
   - git add STAR
   - git commit -m "STAR"
