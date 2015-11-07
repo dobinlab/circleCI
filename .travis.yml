@@ -17,6 +17,7 @@ after_success:
   - eval "$(ssh-agent -s)" #start the ssh agent
   - chmod 600 .travis/deploy_key.pem # this key should have push access
   - ssh-add .travis/deploy_key.pem
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git clone git@github.com:alexdobin/travis-tests1
   - cd travis-tests1
   - git config user.name alexdobin
