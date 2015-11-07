@@ -22,6 +22,7 @@ after_success:
   - #git remote add deploy DEPLOY_REPO_URI_GOES_HERE
   - #git push deploy
   - git clone https://github.com/alexdobin/travis-tests.git alexdobin/travis-tests1
+  - git config user.name alexdobin
   - git add STAR
   - git commit -m "STAR"
   - git push origin master
