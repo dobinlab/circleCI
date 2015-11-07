@@ -7,11 +7,9 @@ before_script:
    - chmod +x .travis.install
    - ./.travis.install
    - git clone --depth 1 https://github.com/alexdobin/STAR
-   - ls
-   - cd STAR/source
 
 script:
-   -  make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   -  cd STAR/source && make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
 
 after_success:
   #- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
@@ -23,7 +21,6 @@ after_success:
   - cd travis-tests1
   - git config user.name alexdobin
   - git config user.email dobin@cshl.edu
-  - cp ../STAR ./
-  - git add STAR
+  - git add STAR/source/STAR
   - git commit -m "STAR"
   - git push origin master
