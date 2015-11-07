@@ -16,11 +16,12 @@ script:
 
 after_success:
   - #cd ../..
+  - eval "$(ssh-agent -s)" #start the ssh agent
+  - chmod 600 .travis/deploy_key.pem # this key should have push access
+  - ssh-add .travis/deploy_key.pem
+  - #git remote add deploy DEPLOY_REPO_URI_GOES_HERE
+  - #git push deploy
+  - git clone https://github.com/alexdobin/travis-tests.git alexdobin/travis-tests1
   - git add STAR
   - git commit -m "STAR"
   - git push origin master
-  - #eval "$(ssh-agent -s)" #start the ssh agent
-  - #chmod 600 .travis/deploy_key.pem # this key should have push access
-  - #ssh-add .travis/deploy_key.pem
-  - #git remote add deploy DEPLOY_REPO_URI_GOES_HERE
-  - #git push deploy
