@@ -11,8 +11,10 @@ before_script:
 script:
    - cd STAR/source 
    - make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - cp STAR ../..
    - make clean
    - make STARlongForMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - cp STARlong ../..
 
 after_success:
   - cd ../..
@@ -25,8 +27,6 @@ after_success:
   - cd travis-tests1
   - git config user.name alexdobin
   - git config user.email dobin@cshl.edu
-  - cp ../STAR/source/STAR .
-  - cp ../STAR/source/STARlong .
   - ./STAR --version
   - ./STARlong --version
   - git add STAR STARlong
