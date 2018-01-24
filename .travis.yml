@@ -4,16 +4,16 @@ git:
   submodules: false
 
 before_script:
-   - chmod +x .travis.install
-   - ./.travis.install
+#   - chmod +x .travis.install
+#   - ./.travis.install
    - git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
 
 script:
    - cd STARcompile/source 
-   - make STARforMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - make STARforMacStatic # CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
    - cp STAR ../..
    - make clean
-   - make STARlongForMacStatic CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
+   - make STARlongForMacStatic # CXX=/usr/local/Cellar/gcc49/4.9.3/bin/g++-4.9
    - cp STARlong ../..
 
 after_success:
