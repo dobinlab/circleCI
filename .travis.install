@@ -1,4 +1,4 @@
-brew update
-brew tap homebrew/versions
-brew install gcc49
-brew info gcc49
+#brew update
+#brew tap homebrew/versions
+brew install gcc@10
+brew info gcc@10
