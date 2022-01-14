@@ -10,7 +10,7 @@ before_script:
 
 script:
    - cd STARcompile/source
-   - gpp=`find /usr/local/Cellar/ -name g++-10`
+   - gpp=`find /usr/local/Cellar/ -name 'g++-*'`
    - echo $gpp
    - make STARforMacStatic CXX=$gpp
    - cp STAR ../..
