@@ -13,9 +13,11 @@ script:
    - gpp=`find /usr/local/Cellar/ -name 'g++-*'`
    - echo $gpp
    - make STARforMacStatic CXX=$gpp
+   - ./STAR
    - cp STAR ../..
    - make clean
    - make STARlongForMacStatic CXX=$gpp
+   - ./STARlong
    - cp STARlong ../..
 
 after_success:
