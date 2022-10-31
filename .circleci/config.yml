@@ -11,12 +11,13 @@ jobs:
           command: |
             brew install gcc
             brew info gcc
-            gpp=`find /usr/local/Cellar/ -name 'g++-*'`
-            echo $gpp
+
 
       - run:
           name: compile_STAR
           command: |
+            gpp=`find /usr/local/Cellar/ -name 'g++-12'`
+            echo $gpp
             git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
             cd STARcompile/source
             make STARforMacStatic CXX=$gpp
