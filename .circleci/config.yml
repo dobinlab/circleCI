@@ -3,35 +3,44 @@ jobs:
     macos:
       xcode: 13.4.1
           steps:
-              - run: brew install gcc
-              - run: brew info gcc
-              - run: git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
+              - run:
+                  - name: GCC
+                  - command: |
+                      brew install gcc
+                      brew info gcc
+                      gpp=`find /usr/local/Cellar/ -name 'g++-*'`
+                      echo $gpp
 
-              - run: cd STARcompile/source
-              - run: gpp=`find /usr/local/Cellar/ -name 'g++-*'`
-              - run: echo $gpp
-              - run: make STARforMacStatic CXX=$gpp
-              - run: ./STAR
-              - run: cp STAR ../..
-              - run: make clean
-              - run: make STARlongForMacStatic CXX=$gpp
-              - run: ./STARlong
-              - run: cp STARlong ../..
+              - run:
+                  - name: compile STAR
+                  - command: |
+                    git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
+                    cd STARcompile/source
+                    make STARforMacStatic CXX=$gpp
+                    ./STAR
+                    cp STAR ../..
+                    make clean
+                    make STARlongForMacStatic CXX=$gpp
+                    ./STARlong
+                    cp STARlong ../..
 
-              - run: cd ../..
-              - run: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-              - run: eval "$(ssh-agent -s)" #start the ssh agent
-              - run: chmod 600 .travis/deploy_key.pem # this key should have push access
-              - run: ssh-add .travis/deploy_key.pem
+              - run:
+                  - name: copy executables
+                  - command: |
+                      cd ../..
+                      echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+                      eval "$(ssh-agent -s)" #start the ssh agent
+                      chmod 600 .travis/deploy_key.pem # this key should have push access
+                      ssh-add .travis/deploy_key.pem
 
-              - run: git clone git@github.com:alexdobin/travis-tests1
-              - run: cd travis-tests1
-              - run: git config user.name alexdobin
-              - run: git config user.email dobin@cshl.edu
-              - run: cp ../STAR ../STARlong ./
-              - run: ls -l
-              - run: ./STAR --version
-              - run: ./STARlong --version
-              - run: git add STAR STARlong
-              - run: git commit -a -m "Added STAR STARlong"
-              - run: git push origin master
+                      git clone git@github.com:alexdobin/travis-tests1
+                      cd travis-tests1
+                      git config user.name alexdobin
+                      git config user.email dobin@cshl.edu
+                      cp ../STAR ../STARlong ./
+                      ls -l
+                      ./STAR --version
+                      ./STARlong --version
+                      git add STAR STARlong
+                      git commit -a -m "Added STAR STARlong"
+                      git push origin master
