@@ -7,7 +7,22 @@ jobs:
       xcode: 13.4.1
     steps:
       - run:
-          name: The First Step
+          name: GCC
           command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+            brew install gcc
+            brew info gcc
+            gpp=`find /usr/local/Cellar/ -name 'g++-*'`
+            echo $gpp
+
+      - run:
+          name: compile_STAR
+          command: |
+            git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
+            cd STARcompile/source
+            make STARforMacStatic CXX=$gpp
+            ./STAR
+            cp STAR ../..
+            make clean
+            make STARlongForMacStatic CXX=$gpp
+            ./STARlong
+            cp STARlong ../..
