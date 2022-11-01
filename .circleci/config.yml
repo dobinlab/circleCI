@@ -13,6 +13,7 @@ jobs:
       - run:
           name: push_GitHub
           command: |
+            git clone https://github.com/dobinlab/circleCI
             echo 1 > STAR
             echo 2 > STARlong
             ls -l
