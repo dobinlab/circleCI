@@ -6,26 +6,21 @@ jobs:
     macos:
       xcode: 13.4.1
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "54:c1:34:15:1d:4b:24:30:92:68:27:69:fe:5e:38:3d"
+
       - run:
           name: push_GitHub
           command: |
-          cd ../..
-          echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-          eval "$(ssh-agent -s)" #start the ssh agent
-          chmod 600 deploy_key.pem # this key should have push access
-          ssh-add deploy_key.pem
 
-          git clone git@github.com:alexdobin/travis-tests1
-          cd travis-tests1
-          git config user.name alexdobin
-          git config user.email dobin@cshl.edu
-          #cp ../STAR ../STARlong ./
+
           echo 1 > STAR
           echo 2 > STARlong
 
           ls -l
-          ./STAR --version
-          ./STARlong --version
+          #./STAR --version
+          #./STARlong --version
           git add STAR STARlong
           git commit -a -m "Added STAR STARlong"
           git push origin master
