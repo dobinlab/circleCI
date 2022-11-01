@@ -13,7 +13,7 @@ jobs:
       - run:
           name: push_GitHub
           command: |
-            git clone https://github.com/dobinlab/circleCI
+            git clone git@github.com:dobinlab/circleCI
             cd circleCI
             git config user.name alexdobin
             git config user.email dobin@cshl.edu
