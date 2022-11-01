@@ -42,7 +42,7 @@ jobs:
             git config user.email dobin@cshl.edu
             cp ../STAR .
             cp ../STARlong .
-            chmod u+x ../STAR ../STARlong
+            chmod u+x ./STAR ./STARlong
             ls -l
             ./STAR > versions.log
             ./STARlong >> versions.log
