@@ -14,6 +14,7 @@ jobs:
           name: push_GitHub
           command: |
             git clone https://github.com/dobinlab/circleCI
+            cd circleCI
             echo 1 > STAR
             echo 2 > STARlong
             ls -l
