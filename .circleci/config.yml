@@ -1,4 +1,5 @@
 
+
 version: 2.1
 jobs:
   build:
@@ -11,15 +12,40 @@ jobs:
             - "54:c1:34:15:1d:4b:24:30:92:68:27:69:fe:5e:38:3d"
 
       - run:
+          name: GCC
+          command: |
+            brew install gcc
+            brew info gcc
+
+
+      - run:
+          name: compile_STAR
+          command: |
+            gpp=`find /usr/local/Cellar/ -name 'g++-12'`
+            echo $gpp
+            git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
+            cd STARcompile/source
+            make STARforMacStatic CXX=$gpp
+            ./STAR
+            cp STAR ../..
+            make clean
+            make STARlongForMacStatic CXX=$gpp
+            ./STARlong
+            cp STARlong ../..
+
+      - run:
           name: push_GitHub
           command: |
             git clone git@github.com:dobinlab/circleCI
             cd circleCI
             git config user.name alexdobin
             git config user.email dobin@cshl.edu
-            echo 1 > STAR
-            echo 2 > STARlong
+            cp ../STAR .
+            cp ../STARlong .
             ls -l
-            git add STAR STARlong
-            git commit -a -m "Added STAR STARlong"
+            ./STAR > versions.log
+            ./STARlong >> versions.log
+            git add STAR STARlong versions.log
+
+            git commit -a -m "Added STAR STARlong: `./STAR --version`   `date`"
             git push origin master
