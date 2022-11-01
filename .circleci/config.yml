@@ -13,14 +13,9 @@ jobs:
       - run:
           name: push_GitHub
           command: |
-
-
-          echo 1 > STAR
-          echo 2 > STARlong
-
-          ls -l
-          #./STAR --version
-          #./STARlong --version
-          git add STAR STARlong
-          git commit -a -m "Added STAR STARlong"
-          git push origin master
+            echo 1 > STAR
+            echo 2 > STARlong
+            ls -l
+            git add STAR STARlong
+            git commit -a -m "Added STAR STARlong"
+            git push origin master
