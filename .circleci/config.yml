@@ -19,8 +19,8 @@ jobs:
       - run:
           name: compile_STAR
           command: |
-            gpp=`find /usr/local/Cellar/ -name 'g++-12'`
-            echo $gpp
+            gpp=`find /usr/local/Cellar/ -name 'g++-*'`
+            echo g++ compiler: $gpp :
             git clone --depth 1 https://github.com/alexdobin/STAR STARcompile
             cd STARcompile/source
             make STARforMacStatic CXX=$gpp
