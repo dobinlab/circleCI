@@ -15,7 +15,7 @@ jobs:
             brew install gcc
             brew info gcc
 
-
+ 
       - run:
           name: compile_STAR
           command: |
