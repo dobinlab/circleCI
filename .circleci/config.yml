@@ -48,3 +48,4 @@ jobs:
 
             git commit -a -m "Added STAR STARlong: `./STAR --version`   `date`"
             git push origin master
+  
