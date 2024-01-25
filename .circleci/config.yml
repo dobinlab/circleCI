@@ -29,7 +29,7 @@ jobs:
             make clean
             make STARlongForMacStatic CXX=$gpp
             ./STARlong
-            cp STARlong ../..
+            cp STARlong ../.. 
 
       - run:
           name: push_GitHub
